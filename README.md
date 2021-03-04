@@ -1,1 +1,1 @@
-# Find-Prime-Number
+# Coding Test
