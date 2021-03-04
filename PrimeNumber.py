@@ -8,6 +8,6 @@ def solution(n):
                 sieve[j] = False
                 
     answer= len([i for i in range(2,n+1) if sieve[i] == True])
-    return answer
 
+    return answer
 
