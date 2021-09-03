@@ -7,12 +7,23 @@ print(sum(map(int,input())))
 
 #알파벳 찾기
 from string import ascii_lowercase
-S = list(input())
 alpha = list(ascii_lowercase)
-alpha_loc = ['-1'] * 26
+S = list(input())
 
-for i in range(26):
-  if alpha[i] in S:
-    alpha_loc[i] = str(S.index(alpha[i]))
+for a in alpha:
+  if a in S:
+    print(S.index(a), end = ' ')
+  else:
+    print('-1', end = " ")
 
-print(" ".join(alpha_loc))
+#문자열 반복
+N = int(input())
+matrix = [[0]* 2 for _ in range(N)]
+for i in range(N):
+  matrix[i] = list(input().split(' '))
+
+for i in range(N):
+  for j in range(len(matrix[i][1])):
+    print(matrix[i][1][j] * int(matrix[i][0]),end ="")
+  print('')
+
