@@ -27,3 +27,19 @@ for i in range(N):
     print(matrix[i][1][j] * int(matrix[i][0]),end ="")
   print('')
 
+#단어 공부
+#내 답안
+vocab = input().upper()
+letter =set(vocab)
+idx = dict((i,vocab.count(i)) for i in letter)
+max_key = [k for k,v in idx.items() if max(idx.values())== v]
+if len(max_key)>1:
+  print("?")
+else:
+  print(max_key[0])
+
+#다른 답안
+s,a = input().lower(),[]
+for i in range(97,123):
+  a.append(s.count(chr(i)))
+print('?' if a.count(max(a))>1 else chr(a.index(max(a))+97).upper())
