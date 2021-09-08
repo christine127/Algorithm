@@ -94,3 +94,34 @@ for i in range(8):
   count += 1
 
 print(count)
+
+#4. 문자열 재정렬
+# 직접 풀어보기
+n = sorted(list(map(ord,input())))
+count =0 
+num = []
+
+for i in n:
+  if i < 65:
+    count += int(chr(i))
+    num.append(i)
+
+new = list(map(chr,set(n)-set(num)))
+new.append(str(count))
+print(''.join(new))
+
+# 답안
+data = input()
+result = []
+value = 0
+
+for x in data:
+  if x.isalpha():
+    result.append(x)
+  else:
+    value += int(x)
+result.sort
+if value != 0 :
+  result.append(str(value))
+
+print(''.join(result))
