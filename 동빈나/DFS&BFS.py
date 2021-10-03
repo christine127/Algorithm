@@ -15,8 +15,6 @@ def dfs(graph,v,visited):
       dfs(graph,i,visited)
 
 
-
-
 graph = [
   [],
   [2,3,8],
@@ -31,7 +29,7 @@ graph = [
 # 각 노드가 방문된 정보를 표현 (1차원 리스트)
 visited = [False]*9
 
-# dfs(graph,1,visited)
+dfs(graph,1,visited)
 
 #BFS(Breadth-First Search): 너비 우선 탐색 
 # 가까운 노드부터 우선적으로 탐색하는 알고리즘
