@@ -28,3 +28,29 @@ and M.company_code  =S.company_code
 and S.company_code  =E.company_code
 GROUP BY C.company_code,C.founder
 order by C.company_code asc;
+
+--mssql Occupation
+/*
+Enter your query here.
+Please append a semicolon ";" at the end of the query and enter your query in a single line to avoid error.
+*/
+set @r1 = 0,@r2 = 0, @r3=0, @r4 = 0;
+with temp as(
+select *, 
+    case Occupation 
+        when 'Doctor' then(@r1 := @r1+1)
+        when 'Professor' then(@r2 := @r2+1)
+        when 'Singer' then(@r3 := @r3+1)
+        when 'Actor' then(@r4 := @r4+1)
+        end as rownum,
+    case Occupation when 'Doctor' then name end as Doctor,
+    case Occupation when 'Professor' then name end as Professor,
+    case Occupation when 'Singer' then name end as Singer,
+    case Occupation when 'Actor' then name end as Actor
+    from Occupations
+    order by Name
+)
+
+select min(Doctor), min(Professor),min(Singer),min(Actor)
+from temp
+group by rownum;
