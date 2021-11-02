@@ -18,4 +18,13 @@ SELECT DISTINCT BST.N,
     END
 FROM BST
 LEFT JOIN BST "BST2" ON BST.N= BST2.P
-ORDER BY BST.N ASC;
+ORDER BY BST.N ASC;]
+
+select C.company_code,C.founder, count(distinct L.lead_manager_code),count(distinct S.senior_manager_code),count(distinct M.manager_code),count(distinct E.employee_code)
+from Company "C", Lead_Manager "L",Senior_Manager "S",Manager "M", Employee "E"
+where C.company_code  =L.company_code
+and M.company_code  =L.company_code
+and M.company_code  =S.company_code
+and S.company_code  =E.company_code
+GROUP BY C.company_code,C.founder
+order by C.company_code asc;
