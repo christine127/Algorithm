@@ -29,7 +29,7 @@ and S.company_code  =E.company_code
 GROUP BY C.company_code,C.founder
 order by C.company_code asc;
 
---mssql Occupation
+--Mysql Occupation
 /*
 Enter your query here.
 Please append a semicolon ";" at the end of the query and enter your query in a single line to avoid error.
@@ -54,3 +54,22 @@ select *,
 select min(Doctor), min(Professor),min(Singer),min(Actor)
 from temp
 group by rownum;
+
+select if(Grade<8,NULL,Name), Grade, Marks  
+from Students
+join Grades
+where Marks between Min_Mark and Max_Mark
+order by Grade desc, Name asc, Marks asc;
+
+--Mysql
+select T.hacker_id, T.name
+from
+    (select S.hacker_id, H.name, D.difficulty_level,S.challenge_id 
+    from Hackers H,Submissions S, Challenges C,Difficulty D
+    where H.hacker_id = S.hacker_id
+    and D.difficulty_level = C.difficulty_level
+    and C.challenge_id = S.challenge_id
+    and S.score = D.score)T
+group by T.hacker_id, T.name
+having count(T.challenge_id) >1
+order by count(T.challenge_id) desc, T.hacker_id asc;
