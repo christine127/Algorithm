@@ -73,3 +73,18 @@ from
 group by T.hacker_id, T.name
 having count(T.challenge_id) >1
 order by count(T.challenge_id) desc, T.hacker_id asc;
+
+
+--Ollivander's Inventory
+select W2.id, T.age, T.min_coin,T.power
+from
+    (select age, min(coins_needed) min_coin,power ,W.code
+    from Wands W, Wands_Property P
+    where W.code = P.code
+    and is_evil = 0
+    group by W.code, power, age)T
+join Wands W2
+on T.min_coin = W2.coins_needed 
+    and T.power = W2.power
+    and T.code = W2.code
+order by power desc, age desc;
