@@ -62,3 +62,33 @@ def quick_sort(array):
     return quick_sort(left_side) +[pivot] + quick_sort(right_side)
 print(quick_sort(array))
 
+# 계수정렬
+# 특정한 조건이 부합할 때만 사용/ 매우 빠르게 동작
+# 데이터 개수가 N , 데이터(양수) 중 최댓값이 K일 때, 최악의 경우에도 수행시간 O(N+K) 보장
+# 공간 복잡도, 시간 복잡도는 모두 O(N+K)
+
+# 1. min-max 범위 담긴 리스트 생성 (인덱스: count 개수)
+# 2. 각 인덱스에 해당하는 값만큼 확인하여 출력
+
+
+#모든 원소의 값이 0 보다 크거나 같다고 가정
+array = [7,5,9,0,3,1,6,1,9,1,4,8,0,5,2]
+#모든 범위를 포함하는 리스트 선언(모든 값은 0으로 초기화)
+count = [0] * (max(array) + 1)
+
+for i in range(len(array)):
+    count[array[i]] += 1 # 각 데이터에 해당하는 인덱스의 값 증가
+
+for i in range(len(count)): # 리스트에 기록된 정렬 정보 확인
+    for j in range(count[i]):
+        print(i, end = ' ') # 띄어쓰기를 구분으로 등장한 횟수만큼 인덱스 출력
+
+
+# 문제1 (진행 중)
+N, K = map(int, input().split(' '))
+A = list(input().split(" "))
+B = list(input().split(" "))
+
+A.sort()
+B.sort(reverse= True)
+print(B)
