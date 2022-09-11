@@ -19,3 +19,29 @@ HAVING CHALLENGES_CREATED IN
             FROM CHALLENGES 
             GROUP BY HACKER_ID) T)
 ORDER BY 3 DESC, 1 ASC
+
+
+-- 풀이 ver.02
+SELECT H.hacker_id
+    ,  H.name
+    ,  COUNT(*) AS challenges_created
+FROM Hackers AS H
+     INNER JOIN Challenges AS C ON H.hacker_id = C.hacker_id
+GROUP BY H.hacker_id, H.name
+HAVING challenges_created = (SELECT MAX(cnt)
+                             FROM
+                                (SELECT hacker_id, COUNT(*) AS cnt
+                                 FROM Challenges
+                                 GROUP BY hacker_id
+                                 ) AS C
+                             )
+OR challenges_created IN  (SELECT cnt
+                          FROM
+                             (SELECT hacker_id, COUNT(*) AS cnt
+                              FROM Challenges
+                              GROUP BY hacker_id
+                              ) AS C
+                          GROUP BY cnt
+                          HAVING count(cnt) = 1
+                             )
+ORDER BY challenges_created DESC, H.hacker_id
