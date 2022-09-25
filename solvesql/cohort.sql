@@ -68,3 +68,4 @@ FROM
       records_preprocessed
     GROUP BY
       first_order_month
+
